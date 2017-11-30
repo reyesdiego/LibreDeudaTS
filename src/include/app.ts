@@ -14,6 +14,7 @@ class App {
     this.express = express();
     this.middleware();
     this.routes();
+    this.ldeRoutes();
   }
 
   // Configure Express middleware.
@@ -32,12 +33,43 @@ class App {
     // placeholder route handler
     router.get("/", (req, res, next) => {
       res.json({
-        message: "Hello World!"
+        message: "Hello World!",
+        status: "OK"
+      });
+    });
+    router.get("/uno", (req, res, next) => {
+      res.json({
+        data: {},
+        message: "Hello UNO!",
+        status: "OK"
       });
     });
     this.express.use("/", router);
+
   }
 
+    // Configure API endpoints.
+    private ldeRoutes(): void {
+      /* This is just to get up and running, and to make sure what we've got is
+       * working so far. This function will change when we start to add more
+       * API endpoints */
+      const router = express.Router();
+      // placeholder route handler
+      router.get("/", (req, res, next) => {
+        res.json({
+          message: "Hello World!",
+          status: "OK"
+        });
+      });
+      router.get("/uno", (req, res, next) => {
+        res.json({
+          data: {},
+          message: "Hello UNO!",
+          status: "OK"
+        });
+      });
+      this.express.use("/lde", router);
+    }
 }
 
 export default new App().express;
